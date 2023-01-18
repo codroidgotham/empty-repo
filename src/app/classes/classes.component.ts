@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogConfig,MatDialog } from '@angular/material/dialog';
 import { map, Observable } from 'rxjs';
+import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
 import { FetchDataService } from '../fetch-data.service';
 import { Class } from '../Models/Class';
 
@@ -11,7 +13,8 @@ import { Class } from '../Models/Class';
 export class ClassesComponent implements OnInit {
   
   Classes;
-  constructor(private dataService:FetchDataService){
+  
+  constructor(private dataService:FetchDataService,private dialog: MatDialog){
     
   }
 
@@ -25,5 +28,26 @@ export class ClassesComponent implements OnInit {
       .subscribe((val)=>this.Classes=(Object.values(val)))
       setTimeout(()=>console.log(this.Classes),8000)
   }
-  
+  addClass() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "400px";
+
+    dialogConfig.data = {};
+
+    const dialogRef = this.dialog.open(ClassDialogComponent, dialogConfig);
+
+    // dialogRef.afterClosed()
+    //     .pipe(
+    //         filter(val => !!val),
+    //         tap(() => this.coursesChanged.emit())
+
+    //     )
+    //     .subscribe();
+
+
+}
 }
