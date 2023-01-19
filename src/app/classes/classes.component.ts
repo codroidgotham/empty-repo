@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogConfig,MatDialog } from '@angular/material/dialog';
+import { MatDialogConfig,MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { map, Observable } from 'rxjs';
 import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
 import { FetchDataService } from '../fetch-data.service';
@@ -14,9 +14,11 @@ export class ClassesComponent implements OnInit {
   
   Classes;
   
-  constructor(private dataService:FetchDataService,private dialog: MatDialog){
+  constructor(private dataService:FetchDataService,private dialog:MatDialog){
     
   }
+
+  
 
   ngOnInit(): void {
       console.log("initialized")
@@ -25,7 +27,7 @@ export class ClassesComponent implements OnInit {
 
 
 
-      .subscribe((val)=>this.Classes=(Object.values(val)))
+      .subscribe((val)=>this.Classes=(val))
       setTimeout(()=>console.log(this.Classes),8000)
   }
   addClass() {
@@ -39,7 +41,7 @@ export class ClassesComponent implements OnInit {
     dialogConfig.data = {};
 
     const dialogRef = this.dialog.open(ClassDialogComponent, dialogConfig);
-
+    
     // dialogRef.afterClosed()
     //     .pipe(
     //         filter(val => !!val),
@@ -50,4 +52,7 @@ export class ClassesComponent implements OnInit {
 
 
 }
+
+
+
 }

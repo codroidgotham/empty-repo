@@ -13,4 +13,9 @@ export class FetchDataService {
       return this.fetcher.get('http://localhost:9000/')
 
   }
+
+  insertClass(body){
+    return this.fetcher.post("http://localhost:9000/classes",body)
+    
+  }
 }

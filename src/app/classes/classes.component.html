@@ -1,28 +1,54 @@
 <div class="containerdiv">
-    <mat-card *ngFor=" let classe of Classes" class="widthclass mat-elevation-z10">
+    <mat-card *ngFor=" let classe of Classes" class="widthclass mat-elevation-z10" style="padding: 5px;">
         <div>{{classe.name}}</div>
         <mat-card-header>
 
             <mat-card-title>{{classe.Name}}</mat-card-title>
 
         </mat-card-header>
+            
+        <table mat-table [dataSource]="[{ Attribute: 'Confidentiality', Value: classe.Confidentiality},
+        { Attribute: 'Integrity', Value: classe.Integrity},{ Attribute: 'Availability', Value: classe.Availability}
+        ]" >
 
-
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="Attribute">
+              <th mat-header-cell *matHeaderCellDef> Attribute </th>
+              <td mat-cell *matCellDef="let element"> {{element.Attribute}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="Value">
+              <th mat-header-cell *matHeaderCellDef> Value</th>
+              <td mat-cell *matCellDef="let element"> {{element.Value}} </td>
+            </ng-container>
+          
+            
+          
+           
+            <tr mat-row *matRowDef="let row; columns: ['Attribute','Value'];"></tr>
+          </table>
 
         <mat-card-content>
 
         </mat-card-content>
-
+        <div class="cardfooter">
+            <button mat-flat-button color="primary" style="margin: 5px;">Edit</button>
+            <button mat-flat-button color="accent" style="margin: 5px;">Delete</button>
+        </div>
 
 
     </mat-card>
-
+   
 
 
 
 </div>
 <div class="divcenter">
-    <button mat-icon-button (click)="addClass()" [ngStyle]="{'background-color':'red','color':'white'}">
+    <button mat-fab color="accent" (click)="addClass()" >
         <mat-icon>add</mat-icon>
     </button>
 </div>

@@ -1,68 +1,89 @@
 <h2 mat-dialog-title>Class Description</h2>
 <mat-dialog-content [formGroup]="form">
 
-    <mat-form-field>
-  
-      <input matInput
-             placeholder="Class Name"
-             formControlName="description">
-  
-    </mat-form-field>
-  
-    <mat-form-field>
-  
-      <mat-select placeholder="Select category"
-                  formControlName="category">
-  
-        <mat-option value="BEGINNER">
-          Beginner
-        </mat-option>
-        <mat-option value="INTERMEDIATE">
-          Intermediate
-        </mat-option>
-        <mat-option value="ADVANCED">
-          Advanced
-        </mat-option>
-  
-      </mat-select>
-  
-    </mat-form-field>
-  
-    <mat-form-field>
-  
-      <input matInput [matDatepicker]="myDatepicker" #searchInput
-             formControlName="releasedAt">
-  
-      <mat-datepicker-toggle matSuffix
-                             [for]="myDatepicker">
-  
-      </mat-datepicker-toggle>
-  
-      <mat-datepicker #myDatepicker></mat-datepicker>
-  
-    </mat-form-field>
-  
-    <mat-form-field>
-  
-          <textarea matInput placeholder="Description"
-                    formControlName="longDescription">
-  
-          </textarea>
-  
-    </mat-form-field>
-  
-  
-  </mat-dialog-content>
-  
-  <mat-dialog-actions>
-  
-    <button mat-raised-button
-            >
-      Close
-    </button>
-  
-    <button mat-raised-button color="primary" #saveButton >
-      Save
-    </button>
-  
-  </mat-dialog-actions>
+  <mat-form-field style="margin: auto;width:80%">
+
+    <input matInput placeholder="Class Name" formControlName="Name">
+
+  </mat-form-field>
+
+  <mat-form-field style="margin: auto;width:80%">
+
+    <mat-select placeholder="Select Confidentiality Value" formControlName="Confidentiality"
+      >
+
+      <mat-option value="VH">
+        Very High
+      </mat-option>
+      <mat-option value="H">
+        High
+      </mat-option>
+      <mat-option value="M">
+        Medium
+      </mat-option>
+      <mat-option value="L">
+        Low
+      </mat-option>
+      <mat-option value="VL">
+        Very Low
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field><mat-form-field style="margin: auto;width:80%">
+    <mat-select placeholder="Select Integrity Value" formControlName="Integrity" >
+
+      <mat-option value="VH">
+        Very High
+      </mat-option>
+      <mat-option value="H">
+        High
+      </mat-option>
+      <mat-option value="M">
+        Medium
+      </mat-option>
+      <mat-option value="L">
+        Low
+      </mat-option>
+      <mat-option value="VL">
+        Very Low
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field style="margin: auto;width:80%">
+    <mat-select placeholder="Select Availability Value" formControlName="Availability" >
+
+      <mat-option value="VH">
+        Very High
+      </mat-option>
+      <mat-option value="H">
+        High
+      </mat-option>
+      <mat-option value="M">
+        Medium
+      </mat-option>
+      <mat-option value="L">
+        Low
+      </mat-option>
+      <mat-option value="VL">
+        Very Low
+      </mat-option>
+
+    </mat-select>
+
+  </mat-form-field>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions style="display: flex;flex-direction: row;justify-content: end;">
+
+  <button mat-raised-button (click)="close()">
+    Close
+  </button>
+
+  <button mat-raised-button color="primary" #saveButton (click)="insertClass()">
+    Save
+  </button>
+
+</mat-dialog-actions>
