@@ -1,13 +1,13 @@
 <h2 mat-dialog-title>Class Description</h2>
-<mat-dialog-content [formGroup]="form">
+<mat-dialog-content [formGroup]="form" class="divcenter">
 
-  <mat-form-field style="margin: auto;width:80%">
+  <mat-form-field >
 
     <input matInput placeholder="Class Name" formControlName="Name">
 
   </mat-form-field>
 
-  <mat-form-field style="margin: auto;width:80%">
+  <mat-form-field >
 
     <mat-select placeholder="Select Confidentiality Value" formControlName="Confidentiality"
       >
@@ -29,7 +29,7 @@
       </mat-option>
 
     </mat-select>
-  </mat-form-field><mat-form-field style="margin: auto;width:80%">
+  </mat-form-field><mat-form-field >
     <mat-select placeholder="Select Integrity Value" formControlName="Integrity" >
 
       <mat-option value="VH">
@@ -50,7 +50,7 @@
 
     </mat-select>
   </mat-form-field>
-  <mat-form-field style="margin: auto;width:80%">
+  <mat-form-field >
     <mat-select placeholder="Select Availability Value" formControlName="Availability" >
 
       <mat-option value="VH">

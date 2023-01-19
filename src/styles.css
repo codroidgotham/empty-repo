@@ -22,14 +22,28 @@
   }
 
   .containerdiv{
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+
     margin:auto;
-    padding: 50px;
+    
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
+    justify-content:center
   }
+
+  /* .containerdiv:hover{
+    background-color: aqua;
+  } */
   
+
+  mat-card:hover{
+    box-shadow: 0 0 15px gray;
+  }
+
   .cardfooter{
     width: 100%;
     display: flex;
@@ -37,4 +51,18 @@
     justify-content: end;
   }
 
+  .mat-card1 {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+  }
   
+  mat-form-field {
+    display: block;
+    width:98%;
+    margin:auto;
+  }
+
+  .fonth{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }

@@ -22,13 +22,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
-const routes: Routes = [{ path: "", component: AboutComponent }, { path: "classes", component: ClassesComponent }, { path: "**", component: AboutComponent }]
+import { LoginComponent } from './login/login.component';
+const routes: Routes = [{ path: "", component: AboutComponent },{path:"login",component:LoginComponent}, { path: "classes", component: ClassesComponent }, { path: "**", component: AboutComponent }]
 @NgModule({
   declarations: [
     AppComponent,
     ClassesComponent,
 
-    ClassDialogComponent
+    ClassDialogComponent,
+      LoginComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatMenuModule, RouterModule.forRoot(routes), HttpClientModule
