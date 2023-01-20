@@ -23,18 +23,23 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import { LoginComponent } from './login/login.component';
-const routes: Routes = [{ path: "", component: AboutComponent },{path:"login",component:LoginComponent}, { path: "classes", component: ClassesComponent }, { path: "**", component: AboutComponent }]
+import { ClassResolver } from './class.resolver';
+import { LoaderComponent } from './loader/loader.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+const routes: Routes = [{ path: "", component: AboutComponent },{path:"login",component:LoginComponent}, { path: "classes", component: ClassesComponent,resolve:{data:ClassResolver} }, { path: "**", component: AboutComponent }]
 @NgModule({
   declarations: [
     AppComponent,
     ClassesComponent,
 
     ClassDialogComponent,
-      LoginComponent
+      LoginComponent,
+      LoaderComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatMenuModule, RouterModule.forRoot(routes), HttpClientModule
     , MatCardModule, MatTableModule, MatDialogModule, FormsModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule, ReactiveFormsModule, MatNativeDateModule,MatInputModule
+  ,MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

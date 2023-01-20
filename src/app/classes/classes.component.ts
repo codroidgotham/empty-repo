@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogConfig,MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { map, Observable } from 'rxjs';
 import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
 import { FetchDataService } from '../fetch-data.service';
@@ -11,24 +13,26 @@ import { Class } from '../Models/Class';
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent implements OnInit {
-  
-  Classes;
-  
-  constructor(private dataService:FetchDataService,private dialog:MatDialog){
-    
+
+  Classes$;
+
+  constructor(private router: Router, private dataService: FetchDataService, private route: ActivatedRoute, private dialog: MatDialog) {
+
   }
 
-  
+
 
   ngOnInit(): void {
-      console.log("initialized")
-      this.dataService.fetchAllClasses()
+    console.log("initialized")
+    // this.dataService.fetchAllClasses()
+    this.Classes$ = this.route.data.pipe(map(val=>val["data"]))
+
+    
+    
 
 
-
-
-      .subscribe((val)=>this.Classes=(val))
-      setTimeout(()=>console.log(this.Classes),8000)
+    // .subscribe((val)=>this.Classes=(val))
+    // setTimeout(()=>console.log(this.Classes),8000)
   }
   addClass() {
 
@@ -41,17 +45,15 @@ export class ClassesComponent implements OnInit {
     dialogConfig.data = {};
 
     const dialogRef = this.dialog.open(ClassDialogComponent, dialogConfig);
+
+    dialogRef.
     
-    // dialogRef.afterClosed()
-    //     .pipe(
-    //         filter(val => !!val),
-    //         tap(() => this.coursesChanged.emit())
+    afterClosed()
 
-    //     )
-    //     .subscribe();
+      .subscribe(val => this.Classes$=this.dataService.fetchAllClasses());
 
 
-}
+  }
 
 
 
