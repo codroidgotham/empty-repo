@@ -36,8 +36,8 @@
 
         </mat-card-content>
         <div class="cardfooter">
-            <button mat-flat-button color="primary" style="margin: 5px;">Edit</button>
-            <button mat-flat-button color="accent" style="margin: 5px;">Delete</button>
+            <button mat-flat-button color="primary" style="margin: 5px;" (click)="editClass(classe)">Edit</button>
+            <button mat-flat-button color="accent" style="margin: 5px;" (click)="deleteClass(classe.classId)">Delete</button>
         </div>
 
 
@@ -47,7 +47,7 @@
 
 
 </div>
-<div class="divcenter">
+<div class="bottomdiv">
     <button mat-fab color="accent" (click)="addClass()" >
         <mat-icon>add</mat-icon>
     </button>

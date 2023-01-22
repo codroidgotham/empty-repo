@@ -6,10 +6,7 @@
   }
 
   .divcenter{
-    top:0;
-    bottom:0;
-    right:0;
-    left:0;
+    
     text-align: center;
     margin:auto;
     /*box-shadow: 0 0 14px gray;*/
@@ -62,4 +59,28 @@
 
   .fonth{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .bottomdiv{
+    width:100%;
+    position: fixed;
+    bottom: 30px;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+
+  }
+
+  .centerdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    /* max-width: 500px; */
+  }
+
+  .background{
+    background-image: url(./assets/images/93190.jpg);
+   
   }

@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { ClassResolver } from './class.resolver';
 import { LoaderComponent } from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 const routes: Routes = [{ path: "", component: AboutComponent },{path:"login",component:LoginComponent}, { path: "classes", component: ClassesComponent,resolve:{data:ClassResolver} }, { path: "**", component: AboutComponent }]
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ const routes: Routes = [{ path: "", component: AboutComponent },{path:"login",co
 
     ClassDialogComponent,
       LoginComponent,
-      LoaderComponent
+      LoaderComponent,
+      EditDialogComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatMenuModule, RouterModule.forRoot(routes), HttpClientModule

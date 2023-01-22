@@ -18,4 +18,16 @@ export class FetchDataService {
     return this.fetcher.post("http://localhost:9000/classes",body)
     
   }
+
+  updateClass(body,id){
+    const url="http://localhost:9000/classes/"+id
+   
+    return this.fetcher.patch(url,body)
+  }
+
+  deleteClass(id){
+    const url="http://localhost:9000/classes/"+id
+    console.log()
+    return this.fetcher.delete(url);
+  }
 }
