@@ -27,7 +27,10 @@ import { ClassResolver } from './class.resolver';
 import { LoaderComponent } from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
-const routes: Routes = [{ path: "", component: AboutComponent },{path:"login",component:LoginComponent}, { path: "classes", component: ClassesComponent,resolve:{data:ClassResolver} }, { path: "**", component: AboutComponent }]
+import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
+import { RAsummaryComponent } from './rasummary/rasummary.component';
+import { PerformComponent } from './perform/perform.component';
+const routes: Routes = [{ path: "", component: AboutComponent },{path:"RiskAssessment",component:PerformComponent,resolve:{data:ClassResolver}},{path:"login",component:LoginComponent}, { path: "classes", component: ClassesComponent,resolve:{data:ClassResolver} }, { path: "**", component: AboutComponent }]
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,10 @@ const routes: Routes = [{ path: "", component: AboutComponent },{path:"login",co
     ClassDialogComponent,
       LoginComponent,
       LoaderComponent,
-      EditDialogComponent
+      EditDialogComponent,
+      RiskAssessmentComponent,
+      RAsummaryComponent,
+      PerformComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatMenuModule, RouterModule.forRoot(routes), HttpClientModule

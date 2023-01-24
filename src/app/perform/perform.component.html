@@ -1,0 +1,89 @@
+<div class="containerdiv">
+    <form [formGroup]="form" class="containerdiv">
+
+
+
+
+        <mat-form-field style="width: 100%;">
+
+            <mat-select placeholder="Select Asset Class for Risk Assessment">
+                <mat-option>
+                    <div
+                        style="width: 100%;text-align: center;display: flex;overflow: hidden;justify-content: center;align-items: center;">
+                        Add New Class
+                        <button mat-icon-button color="accent" aria-label="Example icon button with a plus one icon"
+                            (click)="addClass()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+
+                </mat-option>
+                <mat-option *ngFor="let i of Classes$ | async" value="i">
+                    {{i.Name}}
+                </mat-option>
+
+                
+
+            </mat-select>
+        </mat-form-field>
+
+
+        
+
+
+
+
+
+        <div style="display: flex;flex-direction: row;width: 100%;justify-content: end ;">
+            <button mat-raised-button color="accent" style="margin:auto;width: 84.66px;">
+                Close
+            </button>
+
+            <button mat-raised-button color="warn" #saveButton style="margin:auto">
+                Update
+            </button>
+        </div>
+
+
+
+
+
+
+    </form>
+</div>
+
+<div>
+    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+</div>
