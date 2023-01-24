@@ -21,7 +21,7 @@ export class ClassDialogComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({Name: ["", Validators.required],
       Confidentiality: ["", Validators.required],
-      Integrity: [moment(), Validators.required],
+      Integrity: ["", Validators.required],
       Availability: ["", Validators.required]},
       )
   }
