@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
@@ -11,38 +11,51 @@ import { FetchDataService } from '../fetch-data.service';
   templateUrl: './perform.component.html',
   styleUrls: ['./perform.component.css']
 })
-export class PerformComponent implements OnInit {
- 
-  Classes$:Observable<any>
-  Classes:any[]
+export class PerformComponent implements OnInit, AfterViewInit {
 
-  datasource=[{Confidentiality:'',Integrity:'',Availability:'',threat: '', Impact: '', Vulnerabilities: '', Likelihood: '',add:'',delete:''}];
-  displayedColumns=['Confidentiality','Integrity','Availability','threat', 'Impact', 'Vulnerabilities', 'Likelihood','add','delete']
-  
-  form:FormGroup
-  constructor(private fb:FormBuilder,private route:ActivatedRoute, private dialog:MatDialog, private dataService: FetchDataService){
-    this.form=this.fb.group({
-      Class:["",Validators.required],
-      Threat:["",Validators.required],
-      Impact:["",Validators.required],
-      Vulnerabilities:[[],Validators.required],
-      Likelihood:["",Validators.required],
-      
+  Classes$: Observable<any>
+  Classes: any[]
 
-    })
-    
-    
+  datasource = [{ Confidentiality: '', Integrity: '', Availability: '', threat: '', Impact: '', Vulnerabilities: '', Likelihood: '', add: '', delete: '' }];
+  displayedColumns = ['Confidentiality', 'Integrity', 'Availability', 'threat', 'Impact', 'Vulnerabilities', 'Likelihood', 'add', 'delete']
+
+  form: FormGroup
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private dialog: MatDialog, private dataService: FetchDataService) {
+
+
+
+
+
+
+
+
+
+  }
+  ngAfterViewInit(): void {
+    console.log("initilized view")
   }
 
 
 
   ngOnInit(): void {
 
-    this.Classes$=this.route.data.pipe(map(val=>val["data"]))
-    this.route.data.pipe(map(val=>val["data"])).subscribe(val=>this.Classes=val)
+    this.Classes$ = this.route.data.pipe(map(val => val["data"]))
+    this.route.data.pipe(map(val => val["data"])).subscribe(val => this.Classes = val)
+    this.form = this.fb.group({
+      Classe: ["", Validators.required],
+      Threat: ["", Validators.required],
+      Impact: ["", Validators.required],
+      Vulnerabilities: [[], Validators.required],
+      Likelihood: ["", Validators.required],
+
+
+    })
+
+
+    this.form.valueChanges.subscribe((val) => { this.datasource[0].Confidentiality = val["Classe"].Confidentiality; this.datasource[0].Integrity = val["Classe"].Integrity; this.datasource[0].Availability = val["Classe"].Availability; console.log("in") })
   }
 
-  addClass(){
+  addClass() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -54,17 +67,13 @@ export class PerformComponent implements OnInit {
     const dialogRef = this.dialog.open(ClassDialogComponent, dialogConfig);
 
     dialogRef.
-    
-    afterClosed()
 
-      .subscribe(val => this.Classes$=this.dataService.fetchAllClasses());
+      afterClosed()
+
+      .subscribe(val => this.Classes$ = this.dataService.fetchAllClasses());
   }
-changeValue(){
-  console.log(this.datasource[0].Confidentiality.toString())
-  this.datasource[0].Confidentiality=this.Classes[this.Classes.findIndex((ele)=>ele.Name==this.form.controls["Class"].getRawValue())].Confidentiality
-  this.datasource[0].Availability=this.Classes[this.Classes.findIndex((ele)=>ele.Name==this.form.controls["Class"].getRawValue())].Availability
-  this.datasource[0].Integrity=this.Classes[this.Classes.findIndex((ele)=>ele.Name==this.form.controls["Class"].getRawValue())].Integrity
- 
-}
+
+
+
 
 }

@@ -6,7 +6,7 @@
 
         <mat-form-field appearance="fill" style="width: 100%;">
 
-            <mat-select placeholder="Select Asset Class for Risk Assessment" (valueChange)="changeValue()" formControlName="Class">
+            <mat-select placeholder="Select Asset Class for Risk Assessment"  formControlName="Classe" >
                 <mat-option>
                     <div
                         style="width: 100%;text-align: center;display: flex;overflow: hidden;justify-content: center;align-items: center;">
@@ -18,9 +18,12 @@
                     </div>
 
                 </mat-option>
-                <mat-option *ngFor="let i of Classes$ | async" value="i">
-                    {{i.Name}}
-                </mat-option>
+                <ng-container *ngFor="let classe of Classes$ | async" >
+                    <mat-option [value]="classe" >
+                        {{classe.Name}}
+                    </mat-option>
+                </ng-container>
+                
 
                 
 
