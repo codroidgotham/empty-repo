@@ -15,9 +15,12 @@ export class PerformComponent implements OnInit, AfterViewInit {
 
   Classes$: Observable<any>
   Classes: any[]
+  Controls$:Observable<any>
+  Threats$:Observable<any>
+  Vulnerabilities$:Observable<any>
 
-  datasource = [{  threat: '', Impact: '', Vulnerabilities: '', Likelihood: '', add: '', delete: '' }];
-  displayedColumns = [ 'threat', 'Impact', 'Vulnerabilities', 'Likelihood', 'add', 'delete']
+  datasource = [{  threat: '', Impact: '', Vulnerabilities: '', Likelihood: '', add: '' }];
+  displayedColumns = [ 'threat', 'Impact', 'Vulnerabilities', 'Likelihood', 'add']
 
   form: FormGroup
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private dialog: MatDialog, private dataService: FetchDataService) {
@@ -40,6 +43,7 @@ export class PerformComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
     this.Classes$ = this.route.data.pipe(map(val => val["data"]))
+    
     this.route.data.pipe(map(val => val["data"])).subscribe(val => this.Classes = val)
     this.form = this.fb.group({
       Classe: ["", Validators.required],
@@ -73,7 +77,9 @@ export class PerformComponent implements OnInit, AfterViewInit {
       .subscribe(val => this.Classes$ = this.dataService.fetchAllClasses());
   }
 
+addRiskRow(){
 
+}
 
 
 }

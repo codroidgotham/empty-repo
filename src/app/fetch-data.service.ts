@@ -14,6 +14,23 @@ export class FetchDataService {
 
   }
 
+  fetchAllThreats(){
+    return this.fetcher.get('http://localhost:9000/threats')
+
+}
+
+fetchAllControls(){
+  return this.fetcher.get('http://localhost:9000/threats')
+}
+
+
+fetchAllVulnerabilities(){
+  return this.fetcher.get('http://localhost:9000/threats')
+}
+
+
+
+
   insertClass(body){
     return this.fetcher.post("http://localhost:9000/classes",body)
     

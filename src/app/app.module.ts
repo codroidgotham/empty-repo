@@ -33,6 +33,9 @@ import { PerformComponent } from './perform/perform.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { AssetsComponent } from './assets/assets.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { AddThreatDialogComponent } from './add-threat-dialog/add-threat-dialog.component';
+import { AddVulnerabilityDialogComponent } from './add-vulnerability-dialog/add-vulnerability-dialog.component';
+import { AddControlDialogComponent } from './add-control-dialog/add-control-dialog.component';
 const routes: Routes = [{ path: "", component: AboutComponent },{path:"RiskAssessment",component:PerformComponent,resolve:{data:ClassResolver}},{path:"login",component:LoginComponent}, { path: "classes", component: ClassesComponent,resolve:{data:ClassResolver} }, { path: "**", component: AboutComponent }]
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ const routes: Routes = [{ path: "", component: AboutComponent },{path:"RiskAsses
       RiskAssessmentComponent,
       RAsummaryComponent,
       PerformComponent,
-      AssetsComponent
+      AssetsComponent,
+      AddThreatDialogComponent,
+      AddVulnerabilityDialogComponent,
+      AddControlDialogComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatMenuModule, RouterModule.forRoot(routes), HttpClientModule

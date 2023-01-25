@@ -1,15 +1,14 @@
-<div class="containerdiv">
+<div >
   <form [formGroup]="form">
 
 
 
 
-    <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-form-field appearance="fill" style="width:100%;" >
 
-      <mat-select placeholder="Select Asset Class for Risk Assessment" formControlName="Classe" #classSelector>
+      <mat-select placeholder="Select Asset Class for Risk Assessment" formControlName="Classe" #classSelector s>
         <mat-option>
-          <div
-            style="width: 100%;text-align: center;display: flex;overflow: hidden;justify-content: center;align-items: center;">
+          <div>
             Add New Class
             <button mat-icon-button color="accent" aria-label="Example icon button with a plus one icon"
               (click)="addClass()">
@@ -31,7 +30,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-card *ngIf="!!classSelector.value" style="margin-bottom:20px;width: 100%;">
+    <mat-card *ngIf="!!classSelector.value" style="margin-bottom:20px">
 
       <mat-card-header >
 
@@ -186,15 +185,11 @@
 
       <ng-container matColumnDef="add">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button mat-icon-button
+        <td mat-cell *matCellDef="let element"> <button mat-icon-button (click)="addRiskRow()"
             color="primary"><mat-icon>add</mat-icon></button> </td>
       </ng-container>
 
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button mat-icon-button
-            color="warn"><mat-icon>delete</mat-icon></button> </td>
-      </ng-container>
+      
 
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
