@@ -1,4 +1,4 @@
-<mat-sidenav-container fullScreen class="background" >
+<mat-sidenav-container fullScreen   >
   <mat-sidenav #mynav  >
     <mat-nav-list>
       <a href="" mat-list-item>
@@ -31,7 +31,7 @@
   </mat-sidenav>
 
 
-  <mat-toolbar color="primary">
+  <mat-toolbar  color="primary">
   <button mat-icon-button (click)="mynav.open()" >
     <mat-icon>list</mat-icon>
   </button>
@@ -98,7 +98,7 @@
 </mat-toolbar>
 <div>
   <ng-container  *ngIf="loading"><app-loader></app-loader></ng-container>
-  <router-outlet></router-outlet>
+  <router-outlet ></router-outlet>
 </div>
 
 </mat-sidenav-container>

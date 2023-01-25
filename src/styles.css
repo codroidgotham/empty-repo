@@ -15,23 +15,25 @@
   }
 
   .widthclass{
-    width: 400px;margin:10px;
+    width: 400px;min-width: 400px;margin: 10px;
   }
 
   .containerdiv{
-    top:0;
-    right:0;
-    bottom:0;
-    left:0;
-    padding: 50px;
+   
+    
     margin:auto;
     
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content:center
+    justify-content: space-around;
+    /* align-items: center; */
+    /* box-sizing: border-box; */
   }
-
+  .outletmain{
+    width: 100%;
+    height: 100%;
+  }
 
 
   mat-card:hover{
@@ -43,6 +45,7 @@
     display: flex;
     flex-direction: row;
     justify-content: end;
+    align-items: flex-end;
   }
 
   .mat-card1 {
@@ -82,8 +85,12 @@
 
   .background{
     background-image: url(./assets/images/93190.jpg);
+    
    
   }
-
+  .mat-card2{
+    height:260px;
+    min-height:260px
+  }
 
   

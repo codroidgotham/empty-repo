@@ -26,8 +26,7 @@ export class ClassDialogComponent implements OnInit {
       )
   }
   insertClass(){
-    
-    this.dataService.fetchAllClasses().subscribe(val=>{const len=Object.values(val).length
+    if (this.form.valid){this.dataService.fetchAllClasses().subscribe(val=>{const len=Object.values(val).length
       console.log(this.form.getRawValue())
 
       // const Name=this.form.controls["Name"].getRawValue();
@@ -40,7 +39,8 @@ export class ClassDialogComponent implements OnInit {
       this.dialogRef.close()
     
     
-    })
+    })}
+    
     
     // this.dataService.insertClass()
   }

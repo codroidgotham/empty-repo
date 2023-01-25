@@ -31,6 +31,8 @@ import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.compo
 import { RAsummaryComponent } from './rasummary/rasummary.component';
 import { PerformComponent } from './perform/perform.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { AssetsComponent } from './assets/assets.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 const routes: Routes = [{ path: "", component: AboutComponent },{path:"RiskAssessment",component:PerformComponent,resolve:{data:ClassResolver}},{path:"login",component:LoginComponent}, { path: "classes", component: ClassesComponent,resolve:{data:ClassResolver} }, { path: "**", component: AboutComponent }]
 @NgModule({
   declarations: [
@@ -43,12 +45,13 @@ const routes: Routes = [{ path: "", component: AboutComponent },{path:"RiskAsses
       EditDialogComponent,
       RiskAssessmentComponent,
       RAsummaryComponent,
-      PerformComponent
+      PerformComponent,
+      AssetsComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatMenuModule, RouterModule.forRoot(routes), HttpClientModule
     , MatCardModule, MatTableModule, MatDialogModule, FormsModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule, ReactiveFormsModule, MatNativeDateModule,MatInputModule
-  ,MatProgressSpinnerModule,MatChipsModule
+  ,MatProgressSpinnerModule,MatChipsModule,MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

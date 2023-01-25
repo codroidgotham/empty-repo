@@ -1,178 +1,205 @@
 <div class="containerdiv">
-    <form [formGroup]="form" >
+  <form [formGroup]="form">
 
 
 
 
-        <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-form-field appearance="fill" style="width: 100%;">
 
-            <mat-select placeholder="Select Asset Class for Risk Assessment"  formControlName="Classe" >
-                <mat-option>
-                    <div
-                        style="width: 100%;text-align: center;display: flex;overflow: hidden;justify-content: center;align-items: center;">
-                        Add New Class
-                        <button mat-icon-button color="accent" aria-label="Example icon button with a plus one icon"
-                            (click)="addClass()">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
+      <mat-select placeholder="Select Asset Class for Risk Assessment" formControlName="Classe" #classSelector>
+        <mat-option>
+          <div
+            style="width: 100%;text-align: center;display: flex;overflow: hidden;justify-content: center;align-items: center;">
+            Add New Class
+            <button mat-icon-button color="accent" aria-label="Example icon button with a plus one icon"
+              (click)="addClass()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
 
-                </mat-option>
-                <ng-container *ngFor="let classe of Classes$ | async" >
-                    <mat-option [value]="classe" >
-                        {{classe.Name}}
-                    </mat-option>
-                </ng-container>
-                
-
-                
-
-            </mat-select>
-        </mat-form-field>
-
-
-        
+        </mat-option>
+        <ng-container *ngFor="let classe of Classes$ | async">
+          <mat-option [value]="classe">
+            {{classe.Name}}
+          </mat-option>
+        </ng-container>
 
 
 
 
 
-       
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card *ngIf="!!classSelector.value" style="margin-bottom:20px;width: 100%;">
+
+      <mat-card-header >
+
+        <mat-card-title>{{classSelector.value.Name}}</mat-card-title>
+
+      </mat-card-header>
+
+      <table mat-table [dataSource]="[{ Attribute: 'Confidentiality', Value: classSelector.value.Confidentiality},
+        { Attribute: 'Integrity', Value: classSelector.value.Integrity},{ Attribute: 'Availability', Value: classSelector.value.Availability}
+        ]">
+
+        <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Attribute">
+          <th mat-header-cell *matHeaderCellDef> Attribute </th>
+          <td mat-cell *matCellDef="let element"> {{element.Attribute}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Value">
+          <th mat-header-cell *matHeaderCellDef> Value</th>
+          <td mat-cell *matCellDef="let element"> {{element.Value}} </td>
+        </ng-container>
+
+
+
+
+        <tr mat-row *matRowDef="let row; columns: ['Attribute','Value'];"></tr>
+      </table>
+
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
 
 
 
 
 
 
-   
+
+
+
+
+
+
+
 
 
     <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
+      <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
       
-        <!-- Position Column -->
-        <ng-container matColumnDef="Confidentiality">
-            <th mat-header-cell *matHeaderCellDef> Confidentiality </th>
-          <td mat-cell *matCellDef="let element">{{element.Confidentiality}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Integrity">
-            <th mat-header-cell *matHeaderCellDef> Integrity </th>
-          <td mat-cell *matCellDef="let element">{{element.Integrity}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Availability">
-            <th mat-header-cell *matHeaderCellDef> Availability </th>
-          <td mat-cell *matCellDef="let element">{{element.Availability}}</td>
-        </ng-container>
 
 
-        <ng-container matColumnDef="threat">
-          <th mat-header-cell *matHeaderCellDef> Threat </th>
-          <td mat-cell *matCellDef="let element"> 
-            <mat-form-field appearance="outline">
+      <ng-container matColumnDef="threat">
+        <th mat-header-cell *matHeaderCellDef> Threat </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline">
             <mat-select placeholder="Select Threat">
-                <mat-option value="Data Loss">
-                    Data Loss
-                </mat-option>
-                
-                    
-               
-            </mat-select>    
-        </mat-form-field>
-        
+              <mat-option value="Data Loss">
+                Data Loss
+              </mat-option>
+
+
+
+            </mat-select>
+          </mat-form-field>
+
         </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="Impact">
-          <th mat-header-cell *matHeaderCellDef> Impact </th>
-          <td mat-cell *matCellDef="let element"> <mat-form-field appearance="outline"><mat-select placeholder="Select Impact">
-            <mat-option value="VH">
-                Very High
-            </mat-option>
-            <mat-option value="H">
-                 High
-            </mat-option>
-            <mat-option value="M">
-                Medium
-            </mat-option>
-            <mat-option value="L">
-                Low
-            </mat-option>
-            <mat-option value="VL">
-                Very Low
-            </mat-option>
-                
-        
-        </mat-select></mat-form-field> </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="Vulnerabilities">
-          <th mat-header-cell *matHeaderCellDef> Vulnerabilities </th>
-          <td mat-cell *matCellDef="let element"> 
-        
-        <!-- <mat-form-field> -->
+      </ng-container>
 
-            <mat-selection-list #shoes>
-                <mat-list-option value="No Backup" >
-                  No Backup
-                </mat-list-option>
-                <mat-list-option value="Malware">
-                    Malware
-                  </mat-list-option>
-                  <mat-list-option value="Improper handling">
-                    Improper handling
-                  </mat-list-option>
-              </mat-selection-list>
-              
-             
-        <!-- </mat-form-field>     -->
-        
+      <!-- Name Column -->
+      <ng-container matColumnDef="Impact">
+        <th mat-header-cell *matHeaderCellDef> Impact </th>
+        <td mat-cell *matCellDef="let element"> <mat-form-field appearance="outline"><mat-select
+              placeholder="Select Impact">
+              <mat-option value="VH">
+                Very High
+              </mat-option>
+              <mat-option value="H">
+                High
+              </mat-option>
+              <mat-option value="M">
+                Medium
+              </mat-option>
+              <mat-option value="L">
+                Low
+              </mat-option>
+              <mat-option value="VL">
+                Very Low
+              </mat-option>
+
+
+            </mat-select></mat-form-field> </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Vulnerabilities">
+        <th mat-header-cell *matHeaderCellDef> Vulnerabilities </th>
+        <td mat-cell *matCellDef="let element">
+
+          <!-- <mat-form-field> -->
+
+          <mat-selection-list #shoes>
+            <mat-list-option value="No Backup">
+              No Backup
+            </mat-list-option>
+            <mat-list-option value="Malware">
+              Malware
+            </mat-list-option>
+            <mat-list-option value="Improper handling">
+              Improper handling
+            </mat-list-option>
+          </mat-selection-list>
+
+
+          <!-- </mat-form-field>     -->
+
         </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="Likelihood">
-          <th mat-header-cell *matHeaderCellDef> Likelihood </th>
-          <td mat-cell *matCellDef="let element"><mat-form-field appearance="outline"><mat-select placeholder="Select Likelihood">
-            <mat-option value="VH">
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Likelihood">
+        <th mat-header-cell *matHeaderCellDef> Likelihood </th>
+        <td mat-cell *matCellDef="let element"><mat-form-field appearance="outline"><mat-select
+              placeholder="Select Likelihood">
+              <mat-option value="VH">
                 Very High
-            </mat-option>
-            <mat-option value="H">
-                 High
-            </mat-option>
-            <mat-option value="M">
+              </mat-option>
+              <mat-option value="H">
+                High
+              </mat-option>
+              <mat-option value="M">
                 Medium
-            </mat-option>
-            <mat-option value="L">
+              </mat-option>
+              <mat-option value="L">
                 Low
-            </mat-option>
-            <mat-option value="VL">
+              </mat-option>
+              <mat-option value="VL">
                 Very Low
-            </mat-option>
-                
-        
-        </mat-select></mat-form-field> </td>
-        </ng-container>
+              </mat-option>
 
-        <ng-container matColumnDef="add">
-            <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let element"> <button mat-icon-button color="primary"><mat-icon>add</mat-icon></button> </td>
-          </ng-container>
 
-          <ng-container matColumnDef="delete">
-            <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let element"> <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button> </td>
-          </ng-container>
-        
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      
-    </form>
+            </mat-select></mat-form-field> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="add">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> <button mat-icon-button
+            color="primary"><mat-icon>add</mat-icon></button> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> <button mat-icon-button
+            color="warn"><mat-icon>delete</mat-icon></button> </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </form>
 </div>

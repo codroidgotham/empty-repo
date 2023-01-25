@@ -3,13 +3,13 @@
 
   <mat-form-field >
 
-    <input matInput placeholder="Class Name" formControlName="Name">
-
+    <input matInput placeholder="Class Name" formControlName="Name" required="true">
+    <mat-error *ngIf="!form.controls['Name'].valid">Invalid Class Name</mat-error>
   </mat-form-field>
 
   <mat-form-field >
 
-    <mat-select placeholder="Select Confidentiality Value" formControlName="Confidentiality"
+    <mat-select placeholder="Select Confidentiality Value" formControlName="Confidentiality" required="true"
       >
 
       <mat-option value="VH">
@@ -29,6 +29,7 @@
       </mat-option>
 
     </mat-select>
+    <mat-error *ngIf="!form.controls['Confidentiality'].valid">Invalid Value for Confidentiality</mat-error>
   </mat-form-field><mat-form-field >
     <mat-select placeholder="Select Integrity Value" formControlName="Integrity" >
 
@@ -49,10 +50,11 @@
       </mat-option>
 
     </mat-select>
+    <mat-error *ngIf="!form.controls['Integrity'].valid">Invalid Value for Integrity</mat-error>
   </mat-form-field>
   <mat-form-field >
-    <mat-select placeholder="Select Availability Value" formControlName="Availability" >
-
+    <mat-select placeholder="Select Availability Value" formControlName="Availability" #availselect required="true">
+      
       <mat-option value="VH">
         Very High
       </mat-option>
@@ -70,19 +72,19 @@
       </mat-option>
 
     </mat-select>
-
+    <mat-error *ngIf="!form.controls['Availability'].valid">Invalid Value for Availability</mat-error>
   </mat-form-field>
 
 
 </mat-dialog-content>
 
-<mat-dialog-actions style="display: flex;flex-direction: row;justify-content: end;">
+<mat-dialog-actions class="divcenter" style="justify-content: flex-end;">
 
   <button mat-raised-button (click)="close()">
     Close
   </button>
 
-  <button mat-raised-button color="primary" #saveButton (click)="insertClass()">
+  <button mat-raised-button color="primary" #saveButton (click)="insertClass()" [disabled]="!form.valid">
     Save
   </button>
 

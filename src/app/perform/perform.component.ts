@@ -16,8 +16,8 @@ export class PerformComponent implements OnInit, AfterViewInit {
   Classes$: Observable<any>
   Classes: any[]
 
-  datasource = [{ Confidentiality: '', Integrity: '', Availability: '', threat: '', Impact: '', Vulnerabilities: '', Likelihood: '', add: '', delete: '' }];
-  displayedColumns = ['Confidentiality', 'Integrity', 'Availability', 'threat', 'Impact', 'Vulnerabilities', 'Likelihood', 'add', 'delete']
+  datasource = [{  threat: '', Impact: '', Vulnerabilities: '', Likelihood: '', add: '', delete: '' }];
+  displayedColumns = [ 'threat', 'Impact', 'Vulnerabilities', 'Likelihood', 'add', 'delete']
 
   form: FormGroup
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private dialog: MatDialog, private dataService: FetchDataService) {
@@ -52,7 +52,7 @@ export class PerformComponent implements OnInit, AfterViewInit {
     })
 
 
-    this.form.valueChanges.subscribe((val) => { this.datasource[0].Confidentiality = val["Classe"].Confidentiality; this.datasource[0].Integrity = val["Classe"].Integrity; this.datasource[0].Availability = val["Classe"].Availability; console.log("in") })
+    
   }
 
   addClass() {
