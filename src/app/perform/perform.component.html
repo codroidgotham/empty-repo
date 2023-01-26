@@ -150,9 +150,9 @@
           
           <!-- <mat-form-field> -->
 
-          <mat-selection-list formControlName="Controls" >
+          <mat-selection-list formControlName="Controls" #somecontrol>
             
-            <mat-list-option *ngFor="let control of Controls$ | async">
+            <mat-list-option *ngFor="let control of Controls$ | async" [value]="control">
               {{control.statement}}
             </mat-list-option>
 
@@ -193,9 +193,9 @@
 
           <!-- <mat-form-field> -->
 
-          <mat-selection-list formControlName="Vulnerabilities">
+          <mat-selection-list formControlName="Vulnerabilities" #vulnerabilities>
             
-            <mat-list-option *ngFor="let vulnerability of Vulnerabilities$ | async">
+            <mat-list-option *ngFor="let vulnerability of Vulnerabilities$ | async" [value]="vulnerability">
               {{vulnerability.statement}}
             </mat-list-option>
 

@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 import { Class } from '../Models/Class';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
 import { FetchDataService } from '../fetch-data.service';
+import { MatSelectionList } from '@angular/material/list';
 @Component({
   selector: 'app-perform',
   templateUrl: './perform.component.html',
@@ -18,6 +19,11 @@ export class PerformComponent implements OnInit, AfterViewInit {
   Controls$: Observable<any>
   Threats$: Observable<any>
   Vulnerabilities$: Observable<any>
+  @ViewChild('somecontrol')
+  a:MatSelectionList
+
+  @ViewChild('vulnerabilities')
+  b:MatSelectionList
 
   datasource = [{ threat: '', Impact: '', Controls: '', Vulnerabilities: '', Likelihood: '', add: '' }];
   displayedColumns = ['threat', 'Impact', 'Controls', 'Vulnerabilities', 'Likelihood', 'add']
@@ -43,7 +49,7 @@ export class PerformComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
     this.Classes$ = this.route.data.pipe(map(val => val["data"]))
-    
+
 
 
     // this.route.data.pipe(map(val => val["data"])).subscribe(val => this.Classes = val)
@@ -51,9 +57,9 @@ export class PerformComponent implements OnInit, AfterViewInit {
       Classe: ["", Validators.required],
       Threat: ["", Validators.required],
       Impact: ["", Validators.required],
-      Vulnerabilities: [[], Validators.required],
+      Vulnerabilities: new FormControl([]),
       Likelihood: ["", Validators.required],
-      Controls: ["", Validators.required]
+      Controls: new FormControl([])
 
     })
     this.form.controls["Classe"].valueChanges.subscribe(val => {
@@ -102,11 +108,35 @@ export class PerformComponent implements OnInit, AfterViewInit {
 
   addRiskRow() {
 
+    const obj = { "ClassName":(this.form.controls['Classe'].value.Name),"Threat": (this.form.controls['Threat'].value.statement), "Impact":this.form.controls['Impact'].value ,
+    "Controls":this.a.selectedOptions.selected.map(o=>o.value.statement),"Vulnerabilities":this.b.selectedOptions.selected.map(o=>o.value.statement),"Likelihood": this.form.controls['Likelihood'].value,"Risk":'H' };
+    if (this.form.valid)
+    {
+      this.dataService.insertRiskRow(obj).subscribe(
+        val=>{
+          if (val){
+            this.partialReset();
+            
+          }
+        }
+
+      )
+    }
+
+    console.log(this.b.selectedOptions.selected.map(o=>o.value.statement))
   }
   addThreat() { }
 
   addVulnerability() { }
 
   addControl() { }
+
+  partialReset(){
+    this.form.controls["Threat"].reset()
+      this.form.controls["Impact"].reset(); 
+      
+      
+      this.Vulnerabilities$ = of(null);this.Controls$=of(null); this.form.controls["Likelihood"].reset(); this.Threats$ = this.dataService.fetchAllThreats();
+  }
 
 }

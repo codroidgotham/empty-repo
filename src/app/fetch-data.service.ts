@@ -47,4 +47,10 @@ fetchAllVulnerabilities(){
     console.log()
     return this.fetcher.delete(url);
   }
+
+  insertRiskRow(body){
+    return this.fetcher.post("http://localhost:9000/risk",body)
+    
+  }
 }
+
