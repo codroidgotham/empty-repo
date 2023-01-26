@@ -1,16 +1,16 @@
-<div >
+<div>
   <form [formGroup]="form">
 
 
 
 
-    <mat-form-field appearance="fill" style="width:100%;" >
+    <mat-form-field appearance="fill" style="width:100%;">
 
       <mat-select placeholder="Select Asset Class for Risk Assessment" formControlName="Classe" #classSelector s>
         <mat-option>
-          <div>
+          <div style="display: flex;flex-direction: row;align-items: center;color: green;">
             Add New Class
-            <button mat-icon-button color="accent" aria-label="Example icon button with a plus one icon"
+            <button mat-icon-button color="green" aria-label="Example icon button with a plus one icon"
               (click)="addClass()">
               <mat-icon>add</mat-icon>
             </button>
@@ -32,7 +32,7 @@
 
     <mat-card *ngIf="!!classSelector.value" style="margin-bottom:20px">
 
-      <mat-card-header >
+      <mat-card-header>
 
         <mat-card-title>{{classSelector.value.Name}}</mat-card-title>
 
@@ -88,16 +88,26 @@
               The actual rendered columns are set as a property on the row definition" -->
 
       <!-- Position Column -->
-      
+
 
 
       <ng-container matColumnDef="threat">
         <th mat-header-cell *matHeaderCellDef> Threat </th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline">
-            <mat-select placeholder="Select Threat">
-              <mat-option value="Data Loss">
-                Data Loss
+            <mat-select placeholder="Select Threat" formControlName="Threat">
+              <mat-option>
+                <div style="display: flex;flex-direction: row;align-items: center;color: green;">
+                  Add New Threat
+                  <button mat-icon-button color="green" aria-label="Example icon button with a plus one icon"
+                    (click)="addThreat()">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+
+              </mat-option>
+              <mat-option *ngFor="let threat of Threats$|async" [value]="threat">
+                {{threat.statement}}
               </mat-option>
 
 
@@ -112,7 +122,7 @@
       <ng-container matColumnDef="Impact">
         <th mat-header-cell *matHeaderCellDef> Impact </th>
         <td mat-cell *matCellDef="let element"> <mat-form-field appearance="outline"><mat-select
-              placeholder="Select Impact">
+              placeholder="Select Impact" formControlName="Impact">
               <mat-option value="VH">
                 Very High
               </mat-option>
@@ -133,6 +143,49 @@
             </mat-select></mat-form-field> </td>
       </ng-container>
 
+
+      <ng-container matColumnDef="Controls" >
+        <th mat-header-cell *matHeaderCellDef> Controls </th>
+        <td mat-cell *matCellDef="let element" >
+          
+          <!-- <mat-form-field> -->
+
+          <mat-selection-list formControlName="Controls" >
+            
+            <mat-list-option *ngFor="let control of Controls$ | async">
+              {{control.statement}}
+            </mat-list-option>
+
+          </mat-selection-list>
+
+          <div style="display: flex;flex-direction: row;align-items: center;justify-content: center;color: green;">
+            Add New Control
+            <button mat-icon-button color="green" aria-label="Example icon button with a plus one icon"
+              (click)="addControl()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <!-- </mat-form-field>     -->
+
+        </td>
+      </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!-- Weight Column -->
       <ng-container matColumnDef="Vulnerabilities">
         <th mat-header-cell *matHeaderCellDef> Vulnerabilities </th>
@@ -140,19 +193,21 @@
 
           <!-- <mat-form-field> -->
 
-          <mat-selection-list #shoes>
-            <mat-list-option value="No Backup">
-              No Backup
+          <mat-selection-list formControlName="Vulnerabilities">
+            
+            <mat-list-option *ngFor="let vulnerability of Vulnerabilities$ | async">
+              {{vulnerability.statement}}
             </mat-list-option>
-            <mat-list-option value="Malware">
-              Malware
-            </mat-list-option>
-            <mat-list-option value="Improper handling">
-              Improper handling
-            </mat-list-option>
+
           </mat-selection-list>
 
-
+          <div style="display: flex;flex-direction: row;align-items: center;justify-content: center;color: green;">
+            Add New Vulnerability
+            <button mat-icon-button color="green" aria-label="Example icon button with a plus one icon"
+              (click)="addVulnerability()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
           <!-- </mat-form-field>     -->
 
         </td>
@@ -161,7 +216,7 @@
       <!-- Symbol Column -->
       <ng-container matColumnDef="Likelihood">
         <th mat-header-cell *matHeaderCellDef> Likelihood </th>
-        <td mat-cell *matCellDef="let element"><mat-form-field appearance="outline"><mat-select
+        <td mat-cell *matCellDef="let element"><mat-form-field appearance="outline" ><mat-select formControlName="Likelihood"
               placeholder="Select Likelihood">
               <mat-option value="VH">
                 Very High
@@ -185,11 +240,11 @@
 
       <ng-container matColumnDef="add">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button mat-icon-button (click)="addRiskRow()"
+        <td mat-cell *matCellDef="let element"> <button mat-icon-button (click)="addRiskRow()" [disabled]="!form.valid"
             color="primary"><mat-icon>add</mat-icon></button> </td>
       </ng-container>
 
-      
+
 
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

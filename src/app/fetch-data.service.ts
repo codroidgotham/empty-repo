@@ -20,12 +20,12 @@ export class FetchDataService {
 }
 
 fetchAllControls(){
-  return this.fetcher.get('http://localhost:9000/threats')
+  return this.fetcher.get('http://localhost:9000/controls')
 }
 
 
 fetchAllVulnerabilities(){
-  return this.fetcher.get('http://localhost:9000/threats')
+  return this.fetcher.get<any[]>('http://localhost:9000/vulnerabilities')
 }
 
 

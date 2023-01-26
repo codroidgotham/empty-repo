@@ -93,4 +93,7 @@
     min-height:260px
   }
 
-  
+  td.mat-cell{
+    background-color: blue;
+    max-height:200px
+  }
