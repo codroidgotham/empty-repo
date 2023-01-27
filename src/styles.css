@@ -84,7 +84,8 @@
   }
 
   .background{
-    background-image: url(./assets/images/93190.jpg);
+    background-image: url(./assets/images/19366.jpg);
+    background-size: cover;
     
    
   }
@@ -93,7 +94,4 @@
     min-height:260px
   }
 
-  td.mat-cell{
-    background-color: blue;
-    max-height:200px
-  }
+ 

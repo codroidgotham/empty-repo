@@ -10,7 +10,7 @@ export class FetchDataService {
 
 
   fetchAllClasses(){
-      return this.fetcher.get('http://localhost:9000/')
+      return this.fetcher.get<any>('http://localhost:9000/')
 
   }
 

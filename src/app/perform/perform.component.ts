@@ -115,7 +115,7 @@ export class PerformComponent implements OnInit, AfterViewInit {
       this.dataService.insertRiskRow(obj).subscribe(
         val=>{
           if (val){
-            this.partialReset();
+             this.partialReset();
             
           }
         }
@@ -132,11 +132,14 @@ export class PerformComponent implements OnInit, AfterViewInit {
   addControl() { }
 
   partialReset(){
+    
     this.form.controls["Threat"].reset()
       this.form.controls["Impact"].reset(); 
       
       
       this.Vulnerabilities$ = of(null);this.Controls$=of(null); this.form.controls["Likelihood"].reset(); this.Threats$ = this.dataService.fetchAllThreats();
+      // this.form.clearValidators()
   }
+  
 
 }
