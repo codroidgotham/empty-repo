@@ -30,8 +30,8 @@
     
   </mat-sidenav>
 
-
-  <mat-toolbar  color="primary">
+  
+  <mat-toolbar  color="primary" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="16px">
   <button mat-icon-button (click)="mynav.open()" >
     <mat-icon>list</mat-icon>
   </button>
@@ -96,6 +96,7 @@
     </button>
   </mat-menu>
 </mat-toolbar>
+
 <div>
   <ng-container  *ngIf="loading"><app-loader></app-loader></ng-container>
   <router-outlet ></router-outlet>
