@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Class } from './Models/Class';
+
+function urlBuilder(b:string){
+  
+  const a="https://localhost:7233/api";
+  return a+b
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class FetchDataService {
 
   constructor(private fetcher:HttpClient) { }
 
 
   fetchAllClasses(){
-      return this.fetcher.get<any>('http://localhost:9000/')
+      return this.fetcher.get<any>(urlBuilder('/AssetCategory'))
 
   }
 

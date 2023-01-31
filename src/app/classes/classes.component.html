@@ -2,15 +2,15 @@
 
 <div class="containerdiv">
     <mat-card *ngFor=" let classe of Classes$ | async" class="widthclass mat-elevation-z10 mat-card2" style="padding: 5px;">
-        <div>{{classe.name}}</div>
+        
         <mat-card-header>
 
-            <mat-card-title>{{classe.Name}}</mat-card-title>
+            <mat-card-title>{{classe.name}}</mat-card-title>
 
         </mat-card-header>
             
-        <table mat-table [dataSource]="[{ Attribute: 'Confidentiality', Value: classe.Confidentiality},
-        { Attribute: 'Integrity', Value: classe.Integrity},{ Attribute: 'Availability', Value: classe.Availability}
+        <table mat-table [dataSource]="[{ Attribute: 'Confidentiality', Value: classe.confidentialityLevel},
+        { Attribute: 'Integrity', Value: classe.integrityLevel},{ Attribute: 'Availability', Value: classe.availabilityLevel}
         ]" >
 
             <!--- Note that these columns can be defined in any order.
