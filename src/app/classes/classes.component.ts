@@ -25,7 +25,7 @@ export class ClassesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("initialized")
-    // this.dataService.fetchAllClasses()
+  this.dataService.fetchAllClasses()
     this.Classes$ = this.route.data.pipe(map(val=>val["data"]))
 
     
