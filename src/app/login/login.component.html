@@ -3,24 +3,24 @@
       <form #loginForm="ngForm">
        <!-- (ngSubmit)="onSubmit()"> -->
         <h2 class="fonth">Log In</h2>
-        <mat-error *ngIf="false">
+        <mat-error *ngIf="!loginForm.valid && loginForm.controls['email']?.dirty && loginForm.controls['password']?.dirty">
           The username and password were not recognized
         </mat-error>
-        <mat-form-field>
+        <mat-form-field appearance="outline" >
             <!-- [(ngModel)]="'CSec101'" -->
-          <input matInput placeholder="Email"  name="username" required>
-          <mat-error>
+          <input matInput placeholder="Email"  name="username" [(ngModel)]="email1"  required email >
+          <mat-error >
             Please provide a valid email address
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <!-- [(ngModel)]="'aaaaaaaa'" -->
-          <input matInput type="password" placeholder="Password"  name="password" required>
-          <mat-error>
+          <input matInput type="password" placeholder="Password" type="password"  name="password" required [(ngModel)]="password1">
+          <mat-error >  
             Please provide a valid password
           </mat-error>
         </mat-form-field>
-        <div class="divcenter"><button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button></div>
+        <div class="divcenter"><button mat-raised-button color="primary" [disabled]="!loginForm.form.valid" (click)="submit()">Login</button></div>
         
       </form>
     </mat-card-content>

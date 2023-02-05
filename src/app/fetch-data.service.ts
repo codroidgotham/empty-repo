@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Class } from './Models/Class';
+import { Class, LoginResult } from './Models/Class';
 
 function urlBuilder(b:string){
   
@@ -19,9 +19,16 @@ export class FetchDataService {
 
 
   fetchAllClasses(){
-      return this.fetcher.get<any>(urlBuilder('/AssetCategory'))
+      return this.fetcher.get<any>     
+      (urlBuilder('/AssetCategory'))
 
   }
+
+  fetchToken(obj){
+    return this.fetcher.post<LoginResult>(urlBuilder("/Account/Login"),obj)
+  }
+
+
 
   fetchAllThreats(){
     return this.fetcher.get('http://localhost:9000/threats')

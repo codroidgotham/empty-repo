@@ -1,6 +1,12 @@
 
 
 <div class="containerdiv">
+    <div>
+        {{Classes$ | async | json}}
+    </div>
+
+
+
     <mat-card *ngFor=" let classe of Classes$ | async" class="widthclass mat-elevation-z10 mat-card2" style="padding: 5px;">
         
         <mat-card-header>

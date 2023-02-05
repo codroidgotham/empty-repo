@@ -5,3 +5,9 @@ export interface Class{
     Availability:string
     classId:Number
 }
+
+export interface LoginResult {
+    success: boolean;
+    message: string;
+    token?: string;
+    }
