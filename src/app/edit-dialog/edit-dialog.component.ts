@@ -14,17 +14,20 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditDialogComponent implements OnInit {
   form: FormGroup;
-
+  enum 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditDialogComponent>,private dataService:FetchDataService,@Inject(MAT_DIALOG_DATA) public data: any
   ) { }
   ngOnInit(): void {
-    this.form = this.fb.group({Name: [this.data.Name, Validators.required],
-      Confidentiality: [this.data.Confidentiality, Validators.required],
-      Integrity: [this.data.Integrity, Validators.required],
-      Availability: [this.data.Availability, Validators.required]},
+    console.log(this.data)
+    this.form = this.fb.group({Name: [this.data.name, Validators.required],
+      Confidentiality: [this.data.confidentialityLevel.toString(), Validators.required],
+      Integrity: [this.data.integrityLevel.toString(), Validators.required],
+      Availability: [this.data.availabilityLevel.toString(), Validators.required]},
       )
+
+    // this.form.controls["Confidentiality"].setValue(1)
   }
 
   close(){
@@ -33,10 +36,10 @@ export class EditDialogComponent implements OnInit {
 
 
   updateClass(){
-    const obj={"Name":this.form.controls["Name"].getRawValue(),"Confidentiality":this.form.controls["Confidentiality"].getRawValue(),
-      "Integrity":this.form.controls["Integrity"].getRawValue(),"Availability":this.form.controls["Availability"].getRawValue()}
-    this.dataService.updateClass(obj,this.data.classId).subscribe((val)=>console.log)
-    console.log("update class hit")
+    const obj={"Name":(this.form.controls["Name"].getRawValue()),"ConfidentialityLevel":parseInt(this.form.controls["Confidentiality"].getRawValue())  ,
+      "IntegrityLevel":parseInt(this.form.controls["Integrity"].getRawValue()) ,"AvailabilityLevel":parseInt(this.form.controls["Availability"].getRawValue())}
+    this.dataService.updateClass(obj,this.data.id).subscribe((val)=>console.log)
+    console.log("update class hit",)
     this.dialogRef.close()
   }
 

@@ -53,8 +53,8 @@ fetchAllVulnerabilities(){
   }
 
   updateClass(body,id){
-    const url="http://localhost:9000/classes/"+id
-   
+    const url="https://localhost:7233/api/AssetCategory/"+id
+   console.log(body)
     return this.fetcher.patch(url,body)
   }
 

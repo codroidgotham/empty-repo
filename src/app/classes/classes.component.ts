@@ -72,7 +72,7 @@ export class ClassesComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "400px";
-
+    
     dialogConfig.data = val;
 
     const dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
