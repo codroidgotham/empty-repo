@@ -15,10 +15,10 @@ loginResult?: LoginResult;
 constructor(private auth:AuthService,private router:Router){}
 submit(){
   
-const obj={"email":this.email1,"password":this.password1};
+const obj={"username":this.email1,"password":this.password1};
 console.log(obj)
-this.auth.login(obj).subscribe(result=>{
-  if(result.success){localStorage.setItem(this.auth.tokenKey,result.token);this.router.navigateByUrl('/')}
+this.auth.login(obj).subscribe((result:any)=>{
+  if(result.accessToken){localStorage.setItem(this.auth.tokenKey,result.accesstoken);this.router.navigateByUrl('/')}
 
 
 

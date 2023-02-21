@@ -28,12 +28,53 @@ export class ClassDialogComponent implements OnInit {
   insertClass(){
     if (this.form.valid){this.dataService.fetchAllClasses().subscribe(val=>{const len=Object.values(val).length
       console.log(this.form.getRawValue())
+      const obj={"Name":this.form.controls["Name"].getRawValue(),"Confidentiality":parseInt(this.form.controls["Confidentiality"].getRawValue()),
+      "Integrity":parseInt(this.form.controls["Integrity"].getRawValue()),"Availability":parseInt(this.form.controls["Availability"].getRawValue())}
+      // public string Name { get; set; } = string.Empty;
+      // public Guid? ParentId { get; set; }
+      // public int? Confidentiality { get; set; }
+      // public int? Availability { get; set; }
+      // public int? Integrity { get; set; }
+      // public DateTime? ReviewDueOn { get; set; }
+      // public DateTime? LastReviewedOn { get; set; }
 
-      // const Name=this.form.controls["Name"].getRawValue();
-      // const Confidentiality=
-      const obj={"Name":this.form.controls["Name"].getRawValue(),"Confidentiality":this.form.controls["Confidentiality"].getRawValue(),
-      "Integrity":this.form.controls["Integrity"].getRawValue(),"Availability":this.form.controls["Availability"].getRawValue(),"classId":len+1}
-      // const obj={Name:Name,Confidentiality:Confidentiality,Integrity:Integrity,Availability:Availability,classId:len+1}
+
+
+
+
+
+
+
+
+
+
+
+
+      // const a = [
+      //   {
+      //     "op": "replace",
+      //     "path": "/Name",
+      //     "value": obj.Name
+      //   },
+      //   {
+      //     "op": "replace",
+      //     "path": "/Confidentiality",
+      //     "value": obj.ConfidentialityLevel
+      //   },
+      //   {
+      //     "op": "replace",
+      //     "path": "/Integrity",
+      //     "value": obj.IntegrityLevel
+      //   },
+      //   {
+      //     "op": "replace",
+      //     "path": "/Availability",
+      //     "value": obj.AvailabilityLevel
+      //   }
+      // ]
+
+
+
       console.log("retrieved value",JSON.stringify(obj))
       this.dataService.insertClass(obj).subscribe()
       this.dialogRef.close()

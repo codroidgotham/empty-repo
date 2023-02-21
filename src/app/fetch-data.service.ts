@@ -31,24 +31,24 @@ export class FetchDataService {
 
 
   fetchAllThreats(){
-    return this.fetcher.get('http://localhost:9000/threats')
+    return this.fetcher.get('https://localhost:7233/api/Threat')
 
 }
 
 fetchAllControls(){
-  return this.fetcher.get('http://localhost:9000/controls')
+  return this.fetcher.get('https://localhost:7233/api/control')
 }
 
 
 fetchAllVulnerabilities(){
-  return this.fetcher.get<any[]>('http://localhost:9000/vulnerabilities')
+  return this.fetcher.get<any[]>('https://localhost:7233/vulnerabilities')
 }
 
 
 
 
   insertClass(body){
-    return this.fetcher.post("http://localhost:9000/classes",body)
+    return this.fetcher.post("https://localhost:7233/api/AssetCategory",body)
     
   }
 
@@ -59,7 +59,7 @@ fetchAllVulnerabilities(){
   }
 
   deleteClass(id){
-    const url="http://localhost:9000/classes/"+id
+    const url="https://localhost:7233/api/AssetCategory/"+id
     console.log()
     return this.fetcher.delete(url);
   }

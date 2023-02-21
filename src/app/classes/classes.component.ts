@@ -55,9 +55,9 @@ export class ClassesComponent implements OnInit {
 
 
   }
-  deleteClass(classId:number){
+  deleteClass(classId){
     this.dataService.deleteClass(classId).subscribe(val=>{
-      if (val){
+      if (true){
         this.Classes$=this.dataService.fetchAllClasses()
       }
     })

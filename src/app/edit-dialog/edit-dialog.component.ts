@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Validators } from '@angular/forms';
@@ -14,36 +14,65 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditDialogComponent implements OnInit {
   form: FormGroup;
-  enum 
+  enum
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<EditDialogComponent>,private dataService:FetchDataService,@Inject(MAT_DIALOG_DATA) public data: any
+    private dialogRef: MatDialogRef<EditDialogComponent>, private dataService: FetchDataService, @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
   ngOnInit(): void {
     console.log(this.data)
-    this.form = this.fb.group({Name: [this.data.name, Validators.required],
+    this.form = this.fb.group({
+      Name: [this.data.name, Validators.required],
       Confidentiality: [this.data.confidentialityLevel.toString(), Validators.required],
       Integrity: [this.data.integrityLevel.toString(), Validators.required],
-      Availability: [this.data.availabilityLevel.toString(), Validators.required]},
-      )
+      Availability: [this.data.availabilityLevel.toString(), Validators.required]
+    },
+    )
 
     // this.form.controls["Confidentiality"].setValue(1)
   }
 
-  close(){
+  close() {
     this.dialogRef.close()
   }
 
 
-  updateClass(){
-    const obj={"Name":(this.form.controls["Name"].getRawValue()),"ConfidentialityLevel":parseInt(this.form.controls["Confidentiality"].getRawValue())  ,
-      "IntegrityLevel":parseInt(this.form.controls["Integrity"].getRawValue()) ,"AvailabilityLevel":parseInt(this.form.controls["Availability"].getRawValue())}
-    this.dataService.updateClass(obj,this.data.id).subscribe((val)=>console.log)
+  updateClass() {
+    const obj = {
+      "Name": (this.form.controls["Name"].getRawValue()), "ConfidentialityLevel": parseInt(this.form.controls["Confidentiality"].getRawValue()),
+      "IntegrityLevel": parseInt(this.form.controls["Integrity"].getRawValue()), "AvailabilityLevel": parseInt(this.form.controls["Availability"].getRawValue())
+    }
+
+    const a = [
+      {
+        "op": "replace",
+        "path": "/Name",
+        "value": obj.Name
+      },
+      {
+        "op": "replace",
+        "path": "/Confidentiality",
+        "value": obj.ConfidentialityLevel
+      },
+      {
+        "op": "replace",
+        "path": "/Integrity",
+        "value": obj.IntegrityLevel
+      },
+      {
+        "op": "replace",
+        "path": "/Availability",
+        "value": obj.AvailabilityLevel
+      }
+    ]
+
+
+    this.dataService.updateClass(a, this.data.id).subscribe((val) => console.log)
     console.log("update class hit",)
     this.dialogRef.close()
   }
 
-  
+
 }
 
 

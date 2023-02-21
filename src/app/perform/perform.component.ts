@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { first, map, Observable, of } from 'rxjs';
+import { filter, first, map, Observable, of } from 'rxjs';
 import { Class } from '../Models/Class';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { MatSnackBarConfig,MatSnackBar } from '@angular/material/snack-bar';
@@ -73,14 +73,10 @@ export class PerformComponent implements OnInit, AfterViewInit {
     )
 
 
-    this.form.controls["Threat"].valueChanges.subscribe(val => {console.log("Threat Value changed");
-      this.Vulnerabilities$ = this.dataService.fetchAllVulnerabilities().pipe(
-        map(
-          val => val.filter(
-            ve => { return ve.threatIds.some((vte) => vte == this.form.controls["Threat"].value.threatId) }
-          )
-        )
-      ); this.Controls$ = this.dataService.fetchAllControls();
+    this.form.controls["Threat"].valueChanges.subscribe(val => {console.log(val.id);
+      this.Vulnerabilities$=         this.Threats$.pipe(map(threats=>threats.filter((threat)=>threat.id==val.id)[0].associatedVulnerabilities))
+      // 
+       this.Controls$ = this.dataService.fetchAllControls().pipe(first());
     }
 
 

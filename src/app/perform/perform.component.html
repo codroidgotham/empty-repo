@@ -6,7 +6,7 @@
 
     <mat-form-field appearance="fill" style="width:100%;">
 
-      <mat-select placeholder="Select Asset Class for Risk Assessment" formControlName="Classe" #classSelector s>
+      <mat-select placeholder="Select Asset Class for Risk Assessment" formControlName="Classe" #classSelector >
         <mat-option>
           <div style="display: flex;flex-direction: row;align-items: center;color: green;">
             Add New Class
@@ -19,7 +19,7 @@
         </mat-option>
         <ng-container *ngFor="let classe of Classes$ | async">
           <mat-option [value]="classe">
-            {{classe.Name}}
+            {{classe.name}}
           </mat-option>
         </ng-container>
 
@@ -34,12 +34,12 @@
 
       <mat-card-header>
 
-        <mat-card-title>{{classSelector.value.Name}}</mat-card-title>
+        <mat-card-title>{{classSelector.value.name}}</mat-card-title>
 
       </mat-card-header>
 
-      <table mat-table [dataSource]="[{ Attribute: 'Confidentiality', Value: classSelector.value.Confidentiality},
-        { Attribute: 'Integrity', Value: classSelector.value.Integrity},{ Attribute: 'Availability', Value: classSelector.value.Availability}
+      <table mat-table [dataSource]="[{ Attribute: 'Confidentiality', Value: classSelector.value.confidentiality},
+        { Attribute: 'Integrity', Value: classSelector.value.integrity},{ Attribute: 'Availability', Value: classSelector.value.availability}
         ]">
 
         <!--- Note that these columns can be defined in any order.
@@ -107,7 +107,8 @@
 
               </mat-option>
               <mat-option *ngFor="let threat of Threats$|async" [value]="threat">
-                {{threat.statement}}
+                
+                {{threat.name}}
               </mat-option>
 
 
@@ -153,7 +154,7 @@
           <mat-selection-list formControlName="Controls" #somecontrol>
             
             <mat-list-option *ngFor="let control of Controls$ | async" [value]="control">
-              {{control.statement}}
+              {{control.name}}
             </mat-list-option>
 
           </mat-selection-list>
@@ -196,7 +197,7 @@
           <mat-selection-list formControlName="Vulnerabilities" #vulnerabilities>
             
             <mat-list-option *ngFor="let vulnerability of Vulnerabilities$ | async" [value]="vulnerability">
-              {{vulnerability.statement}}
+              {{vulnerability.name}}
             </mat-list-option>
 
           </mat-selection-list>
